@@ -14,14 +14,7 @@ const mutations = {
 
 const actions = {
   searchUsers ({ commit }, q) {
-    const executor = resolve => {
-      api.searchUsers(q)
-        .then(x => { 
-          commit('setUsers', x)
-          resolve()
-        })
-    }
-    return new Promise(executor)
+    return api.searchUsers(q).then(x => commit('setUsers', x))
   }
 }
 
