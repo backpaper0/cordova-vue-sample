@@ -3,7 +3,7 @@
     <h1 class="title">Cordova Vue Sample</h1>
     <p class="control has-addons">
       <input type="text" class="input is-expanded" placeholder="Search users" v-model="q">
-      <button class="button is-primary" :class="{ 'is-loading': loading }" @click="searchUsers">
+      <button class="button is-primary" :class="{ 'is-loading': loading, disabled: ! q }" @click="searchUsers" :disabled="! q">
         <span class="icon">
           <i class="fa fa-search"></i>
         </span>
