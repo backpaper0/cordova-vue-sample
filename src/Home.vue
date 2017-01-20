@@ -2,7 +2,7 @@
   <section class="section">
     <h1 class="title">Cordova Vue Sample</h1>
     <p class="control has-addons">
-      <input type="text" class="input is-expanded" placeholder="Search users" v-model="q">
+      <input type="text" class="input is-expanded" placeholder="Search GitHub users" v-model="q">
       <button class="button is-primary" :class="{ 'is-loading': loading, disabled: ! q }" @click="searchUsers" :disabled="! q">
         <span class="icon">
           <i class="fa fa-search"></i>
