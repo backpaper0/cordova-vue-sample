@@ -5,16 +5,24 @@ import api from './api'
 Vue.use(Vuex)
 
 const state = {
+  q: '',
+  sort: '',
   users: []
 }
 
 const mutations = {
   setUsers: (state, users) => state.users = users
+  ,setQ: (state, q) => state.q = q
+  ,setSort: (state, sort) => state.sort = sort
 }
 
 const actions = {
-  searchUsers ({ commit }, q) {
-    return api.searchUsers(q).then(x => commit('setUsers', x))
+  searchUsers ({ commit }, payload) {
+    return api.searchUsers(payload).then(x => commit('setUsers', x))
+  },
+  save ({ commit }, { q, sort }) {
+    commit('setQ', q)
+    commit('setSort', sort)
   }
 }
 

@@ -1,9 +1,26 @@
 <template>
   <section class="section">
     <h1 class="title">Cordova Vue Sample</h1>
-    <p class="control has-addons">
-      <input type="text" class="input is-expanded" placeholder="Search GitHub users" v-model="q">
-      <button class="button is-primary" :class="{ 'is-loading': loading, disabled: ! q }" @click="searchUsers" :disabled="! q">
+    <p class="control">
+      <input type="text" class="input is-expanded" :class="{ 'is-danger': isInvalidQ }" placeholder="Search GitHub users" v-model="q">
+      <span class="help is-danger" v-if="isInvalidQ">
+        Query is required
+      </span>
+    </p>
+    <label class="label">Sort</label>
+    <p class="control">
+      <span class="select">
+        <select v-model="sort">
+          <option></option>
+          <option value="followers">Sort by followers</option>
+          <option value="repositories">Sort by repositories</option>
+          <option value="joined">Sort by joined</option>
+        </select>
+      </span>
+    </p>
+    <hr>
+    <p class="control">
+      <button class="button is-primary" :class="{ 'is-loading': loading }" @click="searchUsers">
         <span class="icon">
           <i class="fa fa-search"></i>
         </span>
@@ -19,19 +36,37 @@ export default {
   data () {
     return {
       q: '',
-      loading: false
+      sort: '',
+      loading: false,
+      invalidQ: false
+    }
+  },
+  computed: {
+    isInvalidQ () {
+      return this.invalidQ && (! this.q)
     }
   },
   methods: {
     searchUsers () {
+      if (! this.q) {
+        this.invalidQ = true
+        return
+      }
       this.loading = true
       this.$store
-        .dispatch('searchUsers', this.q)
+      .dispatch('searchUsers', { q: this.q, sort: this.sort })
         .then(() => {
           this.loading = false
           this.$router.push('/users')
         })
     }
+  },
+  created () {
+    this.q = this.$store.state.q
+    this.sort = this.$store.state.sort
+  },
+  beforeDestroy () {
+    this.$store.dispatch('save', { q: this.q, sort: this.sort })
   }
 }
 </script>
