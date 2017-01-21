@@ -4,8 +4,8 @@
     <section class="section">
       <h1 class="title">Cordova Vue Sample</h1>
       <p class="control">
-        <input type="text" class="input is-expanded" :class="{ 'is-danger': isInvalidQ }" placeholder="Search GitHub users" v-model="q">
-        <span class="help is-danger" v-if="isInvalidQ">
+        <input type="text" class="input is-expanded" :class="{ 'is-danger': invalidQ }" placeholder="Search GitHub users" v-model="q">
+        <span class="help is-danger" v-if="invalidQ">
           Query is required
         </span>
       </p>
@@ -47,9 +47,11 @@ export default {
       invalidQ: false
     }
   },
-  computed: {
-    isInvalidQ () {
-      return this.invalidQ && (! this.q)
+  watch: {
+    q (val, oldVal) {
+      if (val) {
+        this.invalidQ = false
+      }
     }
   },
   methods: {
