@@ -9,6 +9,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
     "axios": "^0.15.3",
     "bulma": "^0.3.0",
     "font-awesome": "^4.7.0",

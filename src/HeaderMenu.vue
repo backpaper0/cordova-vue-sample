@@ -16,7 +16,7 @@
         </a>
       </div>
     </nav>
-    <div class="modal" :class="{ 'is-active': shownAboutThisApp }">
+    <div class="modal" :class="{ 'is-active': shownAboutThisApp, 'animated': shownAboutThisApp, 'fadeIn': shownAboutThisApp }">
       <div class="modal-background" @click="hideAboutThisApp"></div>
       <div class="modal-content">
         <About></About>
