@@ -12,24 +12,7 @@
             <span>Return</span>
           </router-link>
         </p>
-        <div class="box" v-for="user in users">
-          <article class="media">
-            <div class="media-left">
-              <figure class="image is-64x64">
-                <img :src="user.avatar_url" alt="Image">
-              </figure>
-            </div>
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <a :href="user.html_url">
-                    <strong>{{ user.login }}</strong>
-                  </a>
-                </p>
-              </div>
-            </div>
-          </article>
-        </div>
+        <User v-for="user in users" :user="user"></User>
         <article class="message is-warning" v-if="users.length == 0">
           <div class="message-body">
             No users
@@ -43,10 +26,11 @@
 <script>
 import { mapState } from 'vuex'
 import Header from './Header.vue'
+import User from './User.vue'
 
 export default {
   name: 'users',
-  components: { Header },
+  components: { Header, User },
   data () {
     return {
     }
