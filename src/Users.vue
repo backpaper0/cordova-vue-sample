@@ -22,7 +22,9 @@
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong>{{ user.login }}</strong>
+                  <a :href="user.html_url">
+                    <strong>{{ user.login }}</strong>
+                  </a>
                 </p>
               </div>
             </div>
