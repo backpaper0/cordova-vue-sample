@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header></Header>
+    <HeaderMenu></HeaderMenu>
     <section class="section">
       <h1 class="title">Cordova Vue Sample</h1>
       <p class="control">
@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import Header from './Header.vue'
+import HeaderMenu from './HeaderMenu.vue'
 
 export default {
   name: 'home',
-  components: { Header },
+  components: { HeaderMenu },
   data () {
     return {
       q: '',

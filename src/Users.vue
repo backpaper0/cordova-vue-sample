@@ -1,7 +1,7 @@
 <template>
   <transition name="slide">
     <div>
-      <Header></Header>
+      <HeaderMenu></HeaderMenu>
       <section class="section">
         <h1 class="title">Cordova Vue Sample</h1>
         <p class="control">
@@ -25,12 +25,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import Header from './Header.vue'
+import HeaderMenu from './HeaderMenu.vue'
 import User from './User.vue'
 
 export default {
   name: 'users',
-  components: { Header, User },
+  components: { HeaderMenu, User },
   data () {
     return {
     }
