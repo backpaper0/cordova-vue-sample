@@ -7,13 +7,15 @@ Vue.use(Vuex)
 const state = {
   q: '',
   sort: '',
-  users: []
+  users: [],
+  mode: ''
 }
 
 const mutations = {
   setUsers: (state, users) => state.users = users
   ,setQ: (state, q) => state.q = q
   ,setSort: (state, sort) => state.sort = sort
+  ,setMode: (state, mode) => state.mode = mode
 }
 
 const actions = {
@@ -23,6 +25,9 @@ const actions = {
   save ({ commit }, { q, sort }) {
     commit('setQ', q)
     commit('setSort', sort)
+  },
+  setMode ({ commit }, { mode }) {
+    commit('setMode', mode)
   }
 }
 

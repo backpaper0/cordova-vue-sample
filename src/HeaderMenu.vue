@@ -2,6 +2,9 @@
   <div>
     <nav class="nav">
       <div class="nav-left">
+        <a class="nav-item">
+          {{ mode }}
+        </a>
       </div>
 
       <span class="nav-toggle" :class="{ 'is-active': menuOpened }" @click="toggleMenu">
@@ -27,6 +30,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import About from './About.vue'
 
 export default {
@@ -38,6 +42,7 @@ export default {
       shownAboutThisApp: false
     }
   },
+  computed: mapState(['mode']),
   methods: {
     toggleMenu () {
       this.menuOpened = (! this.menuOpened)
