@@ -22,6 +22,9 @@ public abstract class TestCaseSkeleton {
                         base.evaluate();
                         switchContextToNative();
                     } else {
+                        if (isAppium() == false) {
+                            Selenide.open("/");
+                        }
                         base.evaluate();
                     }
                 }
@@ -31,12 +34,6 @@ public abstract class TestCaseSkeleton {
 
     private boolean isAppium() {
         return WebDriverRunner.getWebDriver() instanceof AppiumDriver<?>;
-    }
-
-    protected void launchApp() {
-        if (isAppium() == false) {
-            Selenide.open("/");
-        }
     }
 
     protected void takeScreenshot(String fileName) {

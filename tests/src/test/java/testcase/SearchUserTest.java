@@ -11,8 +11,6 @@ public class SearchUserTest extends TestCaseSkeleton {
 
     @Test
     public void test() throws Exception {
-        launchApp();
-
         HomePage homePage = Selenide.page(HomePage.class);
         homePage.page.shouldBe(Condition.visible);
 
