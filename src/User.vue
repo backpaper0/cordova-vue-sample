@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box user">
     <article class="media">
       <div class="media-left">
         <figure class="image is-64x64">
@@ -9,7 +9,7 @@
       <div class="media-content">
         <div class="content">
           <p>
-            <a :href="user.html_url">
+            <a :href="user.html_url" class="user-login">
               <strong>{{ user.login }}</strong>
             </a>
           </p>

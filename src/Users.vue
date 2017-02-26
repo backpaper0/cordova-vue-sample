@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div>
+    <div id="users-page">
       <HeaderMenu></HeaderMenu>
       <section class="section">
         <h1 class="title">Cordova Vue Sample</h1>

@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div id="home-page">
     <HeaderMenu></HeaderMenu>
     <section class="section">
       <h1 class="title">Cordova Vue Sample</h1>
       <p class="control">
-        <input type="text" class="input is-expanded" :class="{ 'is-danger': invalidQ }" placeholder="Search GitHub users" v-model="q">
+        <input type="text" class="input is-expanded" :class="{ 'is-danger': invalidQ }" placeholder="Search GitHub users" v-model="q" id="q">
         <span class="help is-danger" v-if="invalidQ">
           Query is required
         </span>
@@ -12,7 +12,7 @@
       <label class="label">Sort</label>
       <p class="control">
         <span class="select">
-          <select v-model="sort">
+          <select v-model="sort" id="sort">
             <option></option>
             <option value="followers">Sort by followers</option>
             <option value="repositories">Sort by repositories</option>
@@ -22,7 +22,7 @@
       </p>
       <hr>
       <p class="control">
-        <button class="button is-primary" :class="{ 'is-loading': loading }" @click="searchUsers">
+        <button class="button is-primary" :class="{ 'is-loading': loading }" @click="searchUsers" id="searchUsers">
           <span class="icon">
             <i class="fa fa-search"></i>
           </span>
