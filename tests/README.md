@@ -25,6 +25,14 @@ gradle -Dselenide.browser=provider.ChromeMobileEmulatorDriverProvider \
 
 ## Run tests (Android)
 
+Prepare
+
+```console
+npm install -g appium
+```
+
+Run
+
 ```console
 gradle -Dselenide.browser=provider.AndroidDriverProvider test
 ```
