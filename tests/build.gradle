@@ -1,0 +1,24 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.codeborne:selenide:4.3'
+    testCompile 'org.slf4j:slf4j-jdk14:1.7.22'
+    testCompile 'io.appium:java-client:4.1.2'
+}
+
+test {
+    systemProperties(System.properties.findAll { it.key.startsWith('selenide') || it.key.startsWith('webdriver') })
+}
+
