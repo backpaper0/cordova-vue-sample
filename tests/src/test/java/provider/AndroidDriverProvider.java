@@ -1,5 +1,7 @@
 package provider;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Paths;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,7 +30,12 @@ public class AndroidDriverProvider implements WebDriverProvider {
         //        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,
         //                ".MainActivity");
 
-        AndroidDriver<WebElement> driver = new AndroidDriver<>(desiredCapabilities);
-        return driver;
+        try {
+            URL url = new URL("http://localhost:4723/wd/hub");
+            AndroidDriver<WebElement> driver = new AndroidDriver<>(url, desiredCapabilities);
+            return driver;
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

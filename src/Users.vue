@@ -5,7 +5,7 @@
       <section class="section">
         <h1 class="title">Cordova Vue Sample</h1>
         <p class="control">
-          <router-link to="/" class="button is-link">
+          <router-link to="/" class="button is-link" id="back-to-home">
             <span class="icon">
               <i class="fa fa-angle-double-left"></i>
             </span>

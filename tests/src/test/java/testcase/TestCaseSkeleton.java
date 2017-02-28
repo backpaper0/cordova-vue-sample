@@ -1,34 +1,51 @@
 package testcase;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Objects;
+import java.util.stream.Stream;
 import org.junit.Rule;
 import org.junit.rules.TestRule;
-import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import io.appium.java_client.AppiumDriver;
+import provider.ChromeMobileEmulatorDriverProvider;
 
 public abstract class TestCaseSkeleton {
 
+    static {
+        if (System.getProperty("webdriver.chrome.driver") == null) {
+            Path home = Paths.get(System.getProperty("user.home"));
+            Stream.of("chromedriver", "chromedriver.exe")
+                    .map(home::resolve)
+                    .filter(Files::exists)
+                    .findAny()
+                    .map(Path::toAbsolutePath)
+                    .map(Objects::toString)
+                    .ifPresent(x -> System.setProperty("webdriver.chrome.driver", x));
+        }
+        if (System.getProperty("selenide.browser") == null) {
+            Configuration.browser = ChromeMobileEmulatorDriverProvider.class.getName();
+        }
+    }
+
+    private boolean screenshot = Boolean.parseBoolean(System.getProperty("my.screenshot", "true"));
+
     @Rule
-    public TestRule contextSwitcherForAppium = new TestRule() {
+    public TestRule contextSwitcherForAppium = (base, description) -> new Statement() {
         @Override
-        public Statement apply(Statement base, Description description) {
-            return new Statement() {
-                @Override
-                public void evaluate() throws Throwable {
-                    if (isAppium()) {
-                        switchContextToWebView();
-                        base.evaluate();
-                        switchContextToNative();
-                    } else {
-                        if (isAppium() == false) {
-                            Selenide.open("/");
-                        }
-                        base.evaluate();
-                    }
-                }
-            };
+        public void evaluate() throws Throwable {
+            if (isAppium()) {
+                switchContextToWebView();
+                base.evaluate();
+                switchContextToNative();
+            } else {
+                Selenide.open("/");
+                base.evaluate();
+            }
         }
     };
 
@@ -37,12 +54,14 @@ public abstract class TestCaseSkeleton {
     }
 
     protected void takeScreenshot(String fileName) {
-        if (isAppium()) {
-            switchContextToNative();
-            Selenide.screenshot(fileName);
-            switchContextToWebView();
-        } else {
-            Selenide.screenshot(fileName);
+        if (screenshot) {
+            if (isAppium()) {
+                switchContextToNative();
+                Selenide.screenshot(fileName);
+                switchContextToWebView();
+            } else {
+                Selenide.screenshot(fileName);
+            }
         }
     }
 

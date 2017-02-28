@@ -19,6 +19,6 @@ dependencies {
 }
 
 test {
-    systemProperties(System.properties.findAll { it.key.startsWith('selenide') || it.key.startsWith('webdriver') })
+    systemProperties(System.properties.findAll { it.key.startsWith('selenide') || it.key.startsWith('webdriver') || it.key.startsWith('my') })
 }
 

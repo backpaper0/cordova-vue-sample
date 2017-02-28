@@ -28,7 +28,10 @@ gradle -Dselenide.browser=provider.ChromeMobileEmulatorDriverProvider \
 Prepare
 
 ```console
+# install
 npm install -g appium
+# run server
+appium
 ```
 
 Run

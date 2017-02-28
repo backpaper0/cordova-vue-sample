@@ -9,6 +9,8 @@ public class UsersPage {
     @FindBy(css = "#users-page")
     public SelenideElement page;
 
+    @FindBy(css = "#back-to-home")
+    public SelenideElement backToHome;
     @FindBy(css = ".user")
     public ElementsCollection users;
 }
